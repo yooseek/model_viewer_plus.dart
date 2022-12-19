@@ -72,6 +72,7 @@ class ModelViewerState extends State<ModelViewer> {
           debugPrint('>>>> ModelViewer initializing... <$_proxyURL>'); // DEBUG
           await webViewController.loadUrl(_proxyURL);
         },
+        onProgress: widget.progress,
         navigationDelegate: (final NavigationRequest navigation) async {
           debugPrint(
               '>>>> ModelViewer wants to load: <${navigation.url}>'); // DEBUG
