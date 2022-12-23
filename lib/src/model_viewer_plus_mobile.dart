@@ -69,21 +69,21 @@ class ModelViewerState extends State<ModelViewer> {
         },
         javascriptChannels: Set.from([
           JavascriptChannel(
-              name: 'load',
+              name: 'Load',
               onMessageReceived: (JavascriptMessage message) {
                 if (widget.onModelLoaded != null) {
                   widget.onModelLoaded!();
                 }
               }),
           JavascriptChannel(
-              name: 'error',
+              name: 'Error',
               onMessageReceived: (JavascriptMessage message) {
                 if (widget.onModelLoadingFailed != null) {
                   widget.onModelLoadingFailed!(message.message);
                 }
               }),
           JavascriptChannel(
-              name: 'progress',
+              name: 'Progress',
               onMessageReceived: (JavascriptMessage message) {
                 if (widget.onModelLoadingProgress != null) {
                   widget.onModelLoadingProgress!(double.parse(message.message));
