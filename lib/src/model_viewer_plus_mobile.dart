@@ -182,8 +182,7 @@ class ModelViewerState extends State<ModelViewer> {
   String _buildHTML(final String htmlTemplate) {
     return HTMLBuilder.build(
       htmlTemplate: htmlTemplate,
-      // src: '/model',
-      src: widget.src,
+      src: '/model',
       alt: widget.alt,
       poster: widget.poster,
       loading: widget.loading,
