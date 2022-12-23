@@ -92,7 +92,7 @@ abstract class HTMLBuilder {
     }
     // poster
     if (poster != null) {
-      modelViewerHtml.write(' poster="${htmlEscape.convert(poster)}"');
+      modelViewerHtml.write(' poster="$poster"');
     }
     // loading
     if (loading != null) {
@@ -398,6 +398,20 @@ abstract class HTMLBuilder {
       modelViewerHtml.write(relatedJs);
       modelViewerHtml.writeln('</script>');
     }
+
+    modelViewerHtml.writeln("""
+<script type='text/javascript'>
+    document.getElementById('modelViewer').addEventListener('load', (event) => { 
+      Load.postMessage('');
+    });
+    document.getElementById('modelViewer').addEventListener('error', (event) => { 
+      Error.postMessage(event.detail.type);
+    });
+    document.getElementById('modelViewer').addEventListener('progress', (event) => { 
+      Progress.postMessage(event.detail.totalProgress);
+    });
+</script>
+    """);
 
     debugPrint("HTML generated for model_viewer_plus:");
     var html =

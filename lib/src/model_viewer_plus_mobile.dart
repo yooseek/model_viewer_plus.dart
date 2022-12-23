@@ -67,12 +67,34 @@ class ModelViewerState extends State<ModelViewer> {
             () => EagerGestureRecognizer(),
           ),
         },
+        javascriptChannels: Set.from([
+          JavascriptChannel(
+              name: 'Load',
+              onMessageReceived: (JavascriptMessage message) {
+                if (widget.onModelLoaded != null) {
+                  widget.onModelLoaded!();
+                }
+              }),
+          JavascriptChannel(
+              name: 'Error',
+              onMessageReceived: (JavascriptMessage message) {
+                if (widget.onModelLoadingFailed != null) {
+                  widget.onModelLoadingFailed!(message.message);
+                }
+              }),
+          JavascriptChannel(
+              name: 'Progress',
+              onMessageReceived: (JavascriptMessage message) {
+                if (widget.onModelLoadingProgress != null) {
+                  widget.onModelLoadingProgress!(double.parse(message.message));
+                }
+              }),
+        ]),
         onWebViewCreated: (final WebViewController webViewController) async {
           _controller.complete(webViewController);
           debugPrint('>>>> ModelViewer initializing... <$_proxyURL>'); // DEBUG
           await webViewController.loadUrl(_proxyURL);
         },
-        onProgress: widget.progress,
         navigationDelegate: (final NavigationRequest navigation) async {
           debugPrint(
               '>>>> ModelViewer wants to load: <${navigation.url}>'); // DEBUG
