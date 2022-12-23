@@ -399,20 +399,6 @@ abstract class HTMLBuilder {
       modelViewerHtml.writeln('</script>');
     }
 
-    modelViewerHtml.writeln("""
-<script type='text/javascript'>
-    document.getElementById('modelViewer').addEventListener('load', (event) => { 
-      Load.postMessage('');
-    });
-    document.getElementById('modelViewer').addEventListener('error', (event) => { 
-      Error.postMessage(event.detail.type);
-    });
-    document.getElementById('modelViewer').addEventListener('progress', (event) => { 
-      Progress.postMessage(event.detail.totalProgress);
-    });
-</script>
-    """);
-
     debugPrint("HTML generated for model_viewer_plus:");
     var html =
         htmlTemplate.replaceFirst('<!-- body -->', modelViewerHtml.toString());
