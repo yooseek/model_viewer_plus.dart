@@ -92,7 +92,7 @@ abstract class HTMLBuilder {
     }
     // poster
     if (poster != null) {
-      modelViewerHtml.write(' poster="$poster"');
+      modelViewerHtml.write(' poster="${htmlEscape.convert(poster)}"');
     }
     // loading
     if (loading != null) {
