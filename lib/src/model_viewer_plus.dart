@@ -553,13 +553,13 @@ class ModelViewer extends StatefulWidget {
   /// The id of the [ModelViewer] in HTML.
   final String? id;
 
-  /// The id of the [ModelViewer] in HTML.
+  /// The logic of the [ModelViewer] in Loading.
   final void Function()? onModelLoaded;
 
-  /// The id of the [ModelViewer] in HTML.
+  /// The logic of the [ModelViewer] on Fail.
   final void Function(String errorType)? onModelLoadingFailed;
 
-  /// The id of the [ModelViewer] in HTML.
+  /// The logic of the [ModelViewer] in Progress.
   final void Function(double progress)? onModelLoadingProgress;
 
   @override
